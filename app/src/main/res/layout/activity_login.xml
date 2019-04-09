@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:dividerHeight="4dp"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:gravity="center">
+    <Button
+        android:id="@+id/startmainbuttton"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:text="시작하기"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/databackupbutton"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:text="데이터백업가져오기"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/guidebutton"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:text="Guide"
+        android:layout_gravity="center"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

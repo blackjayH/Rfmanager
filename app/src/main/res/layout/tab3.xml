@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/searchinput"
+            android:layout_width="275dp"
+            android:layout_height="40dp"
+            android:hint=" +add search" />
+
+        <Button
+            android:id="@+id/searchbutton"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="검색" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/productmenu"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:text="장보기 리스트"
+            android:textSize="20dp" />
+
+
+        <Button
+            android:id="@+id/findproduct"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:text="백업리스트 확인하기" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/inputbuyitem"
+            android:layout_width="235dp"
+            android:layout_height="40dp"
+            android:hint=" +add a new product name" />
+
+        <Button
+            android:id="@+id/enrollbuyitem"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="담기" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
