@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
+    //DBHelper dbHelper;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -22,10 +23,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // 데이터가져오기
-        Button databackupbutton = (Button) findViewById(R.id.databackupbutton);
+        final Button databackupbutton = (Button) findViewById(R.id.databackupbutton);
         databackupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //dbHelper = new DBHelper(getApplicationContext());
+                //databackupbutton.setText(dbHelper.getuser());
                 Intent intent = new Intent(getApplicationContext(), GuideActivity.class);
                 startActivity(intent);
             }

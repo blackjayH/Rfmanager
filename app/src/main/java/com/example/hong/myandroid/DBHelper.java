@@ -1,6 +1,5 @@
 package com.example.hong.myandroid;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,13 +26,34 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE SHOPPINGLIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, item TEXT, enrolldate TEXT, nf INTEGER, direction INTEGER, tf INTEGER);");
         db.execSQL("CREATE TABLE RFITEMLIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, item TEXT, enrolldate TEXT, amount INTEGER, position TEXT, category TEXT, expirydate TEXT, detail TEXT);");
+        db.execSQL("CREATE TABLE USER (_id INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, pw TEXT);");
+    }
 
-
-        //db.execSQL("CREATE TABLE BACKUPLIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT, item TEXT, amount INTEGER, live INTEGER, withdraw INTEGER);");
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 
-    // DB확인용 제거예정
+    // 쇼핑리스트 아이템 추가
+    public void insertuser(String userid, String pw) {
+        SQLiteDatabase db = getWritableDatabase();
+        //db.execSQL("CREATE TABLE USER (_id INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, pw TEXT);");
+        db.execSQL("INSERT INTO USER VALUES(null, '" + userid + "', '" + pw + "');");
+        db.close();
+    }
+
+    public String getuser() {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        Cursor cursor = db.rawQuery("SELECT * FROM USER", null);
+        while (cursor.moveToNext()) {
+            result = cursor.getString(1) + "\n";
+        }
+        return result;
+    }
+
+    // 쇼핑리스트 DB확인용
     public String getResult1() {
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
@@ -46,6 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    // 쇼핑리스트 아이템 로딩
     public ArrayList<BuyItem> getBuyItem() {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<BuyItem> bps = new ArrayList<>();
@@ -56,23 +77,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return bps;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("CREATE TABLE SHOPPINGLIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, userid TEXT, item TEXT, enrolldate TEXT, nf INTEGER, direction INTEGER, tf INTEGER);");
-    }
-
+    // 쇼핑리스트 아이템 추가
     public void insert(String userid, String item, String enrolldate) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO SHOPPINGLIST VALUES(null, '" + userid + "', '" + item + "', '" + enrolldate + "', " + 0 + ", " + 1 + ", 0);");
         db.close();
     }
 
-    public void backUp(String user_id, String item, int amount, int live) {
+    // 쇼핑리스트 아이템 제거
+    public void delete(String item) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO BACKUPLIST VALUES(null, '" + user_id + "', '" + item + "', " + amount + ", " + live + ", 0);");
+        db.execSQL("DELETE FROM SHOPPINGLIST WHERE item = '" + item + "';");
         db.close();
     }
-    // 유저 아이디 , 상품명, 등록일, ㄷ,ㅇ럭ㅇ;ㄹ, 수량, 저장장소(상온/냉장/냉동) , 카테고리, 유통기한, 메모
+
+    // 냉장고 아이템 추가
+    // 유저 아이디 , 상품명, 등록일, , 수량, 저장장소(상온/냉장/냉동) , 카테고리, 유통기한, 메모
     //  db.execSQL("CREATE TABLE RFITEMLIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT, item TEXT, enrollDate TEXT, amount INTEGER, position TEXT, category TEXT, expirydate TEXT, detail TEXT);");
     public void insertrf(String userid, String item, String enrolldate, int amount, String position, String category, String expirydate, String detail) {
         SQLiteDatabase db = getWritableDatabase();
@@ -81,40 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void update(String user_id, String item, int amount, int live, int withdraw) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE BUYLIST SET amount=" + amount + "  WHERE item='" + item + "';");
-        db.execSQL("UPDATE BUYLIST SET live=" + live + " WHERE item='" + item + "';");
-        db.execSQL("UPDATE BUYLIST SET withdraw=" + withdraw + " WHERE item='" + item + "';");
-        db.close();
-    }
-
-    public void update(String item, int amount) { // 디테일에서 수량입력
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE BUYLIST SET amount=" + amount + "  WHERE item='" + item + "';");
-        db.close();
-    }
-
-    public void delete(String item) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM SHOPPINGLIST WHERE item = '" + item + "';");
-        db.close();
-    }
-
-    public void delete2(String title) {
-        SQLiteDatabase db = getWritableDatabase();
-        // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM USERPRODUCTLIST WHERE title= '" + title + "';");
-        db.close();
-    }
-
-    public void returnbackup(String item) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM BACKUPLIST WHERE item= '" + item + "';");
-        db.close();
-    }
-
-    // DB확인용 제거예정
+    // 냉장고 DB확인용
     public String getResult() {
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
@@ -144,6 +131,42 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     /*
+     public void update(String user_id, String item, int amount, int live, int withdraw) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE BUYLIST SET amount=" + amount + "  WHERE item='" + item + "';");
+        db.execSQL("UPDATE BUYLIST SET live=" + live + " WHERE item='" + item + "';");
+        db.execSQL("UPDATE BUYLIST SET withdraw=" + withdraw + " WHERE item='" + item + "';");
+        db.close();
+    }
+
+    public void update(String item, int amount) { // 디테일에서 수량입력
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE BUYLIST SET amount=" + amount + "  WHERE item='" + item + "';");
+        db.close();
+    }
+    public void backUp(String user_id, String item, int amount, int live) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO BACKUPLIST VALUES(null, '" + user_id + "', '" + item + "', " + amount + ", " + live + ", 0);");
+        db.close();
+    }
+
+     public void delete2(String title) {
+        SQLiteDatabase db = getWritableDatabase();
+        // 입력한 항목과 일치하는 행 삭제
+        db.execSQL("DELETE FROM USERPRODUCTLIST WHERE title= '" + title + "';");
+        db.close();
+    }
+
+    public void returnbackup(String item) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM BACKUPLIST WHERE item= '" + item + "';");
+        db.close();
+    }
+
+
+
+
+
      public ArrayList<BuyProduct> getBuyProduct() {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<BuyProduct> bps = new ArrayList<>();
