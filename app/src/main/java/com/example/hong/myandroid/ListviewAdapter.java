@@ -13,8 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ListviewAdapter extends BaseAdapter {
-
-    public ArrayList<BuyItem> buyitemList = new ArrayList<>();
+    private ArrayList<BuyItem> buyitemList = new ArrayList<>();
     ///boolean isChecked;
 
     @Override

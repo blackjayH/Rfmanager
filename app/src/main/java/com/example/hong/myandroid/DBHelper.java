@@ -84,6 +84,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    // 쇼핑리스트 아이템 업데이트
+    public void insert(String userid, String item, String enrolldate, int nf, int direction, int tf) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO SHOPPINGLIST VALUES(null, '" + userid + "', '" + item + "', '" + enrolldate + "', " + 0 + ", " + 0 + ", 0);");
+        db.close();
+    }
+
     // 쇼핑리스트 아이템 제거
     public void delete(String item) {
         SQLiteDatabase db = getWritableDatabase();
@@ -131,13 +138,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     /*
-     public void update(String user_id, String item, int amount, int live, int withdraw) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE BUYLIST SET amount=" + amount + "  WHERE item='" + item + "';");
-        db.execSQL("UPDATE BUYLIST SET live=" + live + " WHERE item='" + item + "';");
-        db.execSQL("UPDATE BUYLIST SET withdraw=" + withdraw + " WHERE item='" + item + "';");
-        db.close();
-    }
+
 
     public void update(String item, int amount) { // 디테일에서 수량입력
         SQLiteDatabase db = getWritableDatabase();

@@ -24,7 +24,6 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-
         // 위젯에 대한 참조.
         emailInput2 = (EditText) findViewById(R.id.emailInput2);
         passwordInput2 = (EditText) findViewById(R.id.passwordInput2);

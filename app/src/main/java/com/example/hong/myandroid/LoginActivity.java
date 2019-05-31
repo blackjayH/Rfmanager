@@ -23,13 +23,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // 데이터가져오기
-        final Button databackupbutton = (Button) findViewById(R.id.databackupbutton);
+        Button databackupbutton = (Button) findViewById(R.id.databackupbutton);
         databackupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //dbHelper = new DBHelper(getApplicationContext());
                 //databackupbutton.setText(dbHelper.getuser());
-                Intent intent = new Intent(getApplicationContext(), GuideActivity.class);
+                Intent intent = new Intent(getApplicationContext(), JsonActivity.class);
                 startActivity(intent);
             }
         });

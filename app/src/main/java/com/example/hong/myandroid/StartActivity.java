@@ -15,8 +15,8 @@ public class StartActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbHelper = new DBHelper(getApplicationContext());
-                dbHelper.insertuser("a","b");
+                //dbHelper = new DBHelper(getApplicationContext());
+                //dbHelper.insertuser("a","b");
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }

@@ -29,23 +29,23 @@ public class BacodeActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         Log.d("onActivityResult", "onActivityResult: .");
-        /*
+
         if (resultCode == -1) {
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             str += scanResult.getContents();
-            Intent localIntent = new Intent();
-            localIntent.putExtra("result", intent);
-            setResult(-1, localIntent);
+            Intent tempIntent = new Intent();
+            tempIntent.putExtra("result", intent);
+            setResult(-1, tempIntent);
             finish();
         }
-         */
+        /*
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             str += scanResult.getContents();
             Intent localIntent = new Intent();
             localIntent.putExtra("result", intent);
             setResult(-1, localIntent);
             finish();
-
+         */
     }
 
 

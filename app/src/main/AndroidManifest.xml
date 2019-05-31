@@ -25,6 +25,9 @@
         <activity android:name=".VoiceActivity"></activity>
         <activity android:name=".StartActivity"></activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".TrashItemListActivity"></activity>
+        <activity android:name=".JsonActivity"></activity>
+
         <activity
             android:name=".AnyOrientationCaptureActivity"
             android:screenOrientation="fullSensor"
