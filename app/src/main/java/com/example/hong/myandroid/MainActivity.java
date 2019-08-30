@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity implements ItemListFragment.
 
         TabHost.TabSpec tabSpec2 = host.newTabSpec("tab2"); // 구분자
         tabSpec2.setIndicator("2"); // 탭 이름
-        host.addTab(tabSpec2, Fragment2.class, null);
+        host.addTab(tabSpec2, RfitemListActivity.class, null);
 
         TabHost.TabSpec tabSpec3 = host.newTabSpec("tab3"); // 구분자
         tabSpec3.setIndicator("3"); // 탭 이름
         host.addTab(tabSpec3, AddItemActivity.class, null);
 
-        host.setCurrentTab(2);
+        host.setCurrentTab(0);
 
 
     }

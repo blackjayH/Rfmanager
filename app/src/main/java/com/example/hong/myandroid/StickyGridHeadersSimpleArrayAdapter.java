@@ -80,6 +80,7 @@ public class StickyGridHeadersSimpleArrayAdapter<T> extends BaseAdapter implemen
         }
 
         // set header text as first char in string
+        // 헤더 글자 설정
         holder.textView.setText(string.subSequence(0, 1));
 
         return convertView;

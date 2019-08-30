@@ -7,21 +7,20 @@ import android.view.View;
 import android.widget.Button;
 
 public class StartActivity extends AppCompatActivity {
-    DBHelper dbHelper;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        // 로그인
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //dbHelper = new DBHelper(getApplicationContext());
-                //dbHelper.insertuser("a","b");
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
 
+        // 회원가입
         Button signupButton = (Button) findViewById(R.id.signupButton);
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override

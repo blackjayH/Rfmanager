@@ -29,6 +29,7 @@ public class JoinActivity extends AppCompatActivity {
         passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
         passwordInputcheck2 = (EditText) findViewById(R.id.passwordInputcheck2);
         Button joinButton = (Button) findViewById(R.id.joinButton);
+        // 회원가입 버튼
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,14 +41,15 @@ public class JoinActivity extends AppCompatActivity {
                     ContentValues values = new ContentValues();
                     values.put("id", id);
                     values.put("pw", pw);
-                    NetworkTask networkTask = new NetworkTask(url, values);
+                    NetworkTask networkTask = new NetworkTask("http://10.0.2.2/join.php", values);
                     networkTask.execute();
+                    finish();
                 }
                 else
                     Toast.makeText(getApplicationContext(), "비밀번호를 체크해주세요.", Toast.LENGTH_LONG).show();
             }
         });
-
+        // ID 중복 체크 버튼
         idcheckBox = (CheckBox) findViewById(R.id.idcheckBox) ;
         idcheckBox.setOnClickListener(new CheckBox.OnClickListener() {
             @Override
@@ -62,7 +64,10 @@ public class JoinActivity extends AppCompatActivity {
                     else
                     {
                         //dialog = ProgressDialog.show(JoinTestActivity.this, "", "아이디를 중복 여부를 체크하고있습니다.", true);
-                        check(emailInput2.getText().toString());
+                        ContentValues values = new ContentValues();
+                        values.put("username", emailInput2.getText().toString());
+                        NetworkTask networkTask = new NetworkTask("http://10.0.2.2/check.php", values);
+                        networkTask.execute();
                     }
                 } else {
                     Toast.makeText(JoinActivity.this, "체크해제되었습니다.", Toast.LENGTH_SHORT).show();
@@ -72,13 +77,7 @@ public class JoinActivity extends AppCompatActivity {
         }) ;
     }
 
-    private void check(String str) {
-        ContentValues values = new ContentValues();
-        values.put("username", str);
-        NetworkTask networkTask = new NetworkTask(url, values);
-        networkTask.execute();
-    }
-
+    // 결과 확인
     private void alarmcheck(String str) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
@@ -111,45 +110,6 @@ public class JoinActivity extends AppCompatActivity {
                 }
             });
         }
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    private void showfail(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("iD 사용여부 확인");
-        builder.setMessage("사용할 수 없는 아이디입니다. 다시 입력해주세요");
-        //builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                idcheckBox.toggle();
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    private void showtrue(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("iD 사용여부 확인");
-        builder.setMessage("이 아이디를 사용하시겠습니까?");
-        //builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                idcheckBox.setEnabled(false);
-                emailInput2.setEnabled(false);
-            }
-        });
-
-        builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                idcheckBox.toggle();
-            }
-        });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
@@ -169,7 +129,6 @@ public class JoinActivity extends AppCompatActivity {
             String result; // 요청 결과를 저장할 변수.
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
-
             return result;
         }
 

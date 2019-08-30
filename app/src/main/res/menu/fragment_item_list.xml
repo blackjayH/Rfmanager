@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_toggle_sticky"
         android:orderInCategory="1"
-        android:title="zz" android:checkable="true" android:checked="true"
+        android:title="select toggle" android:checkable="true" android:checked="true"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_use_sticky_adapter"

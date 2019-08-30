@@ -6,20 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-public class Fragment2 extends Fragment implements ItemListFragment.Callbacks{
+// 지금 사용중인 Fragment
+public class RfitemListActivity extends Fragment implements ItemListFragment.Callbacks{
     private boolean mTwoPane;
 
-    public Fragment2() {
+    public RfitemListActivity() {
         // Required empty public constructor
     }
 
 
     @Override
     public void onItemSelected(int id) {
-
         if (mTwoPane) {
-
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
@@ -38,11 +36,9 @@ public class Fragment2 extends Fragment implements ItemListFragment.Callbacks{
             startActivity(detailIntent);
         }
 
-
         Intent detailIntent = new Intent(getActivity(), ItemDetailActivity.class);
         detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
         startActivity(detailIntent);
-
     }
 
     @Override

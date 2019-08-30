@@ -13,13 +13,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class BuyItemListActivity extends Fragment {
     private BuyItemNotification buyItemNotification;
     public static ArrayList<BuyItem> buyitemList = new ArrayList<>();
+    public static ArrayList<String> buyitemnameList = new ArrayList<>();
+    public static ArrayList<String> buyitemenrolldateList = new ArrayList<>();
     EditText inputbuyitem;
     Button enrollbuyitem, dropbuyitem, restorebuyitem;
     DBHelper dbHelper; // = new DBHelper(getActivity(), "11.db", null, 1);
@@ -61,7 +66,6 @@ public class BuyItemListActivity extends Fragment {
         adapter.notifyDataSetChanged();
         }
          */
-
 
 
         //Notification
@@ -170,6 +174,7 @@ public class BuyItemListActivity extends Fragment {
         });
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -179,18 +184,54 @@ public class BuyItemListActivity extends Fragment {
     private void updateadapter() {
         adapter = new ListviewAdapter();
         buyitemList.clear();
+        buyitemnameList.clear();
+        buyitemenrolldateList.clear();
         buyitemList = dbHelper.getBuyItem();
+        sort();
 
         for (int i = buyitemList.size() - 1; i >= 0; i--) {
             if (buyitemList.get(i).getDirection() != 1) {
                 buyitemList.remove(buyitemList.get(i));
+                buyitemnameList.remove(buyitemList.get(i).getItem());
+                buyitemenrolldateList.remove(buyitemList.get(i).getItem());
             }
         }
+
         for (BuyItem bp : buyitemList) {
+            buyitemnameList.add(bp.getItem());
+            buyitemenrolldateList.add(bp.getEnrolldate());
             adapter.add(bp);
         }
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void sort() {
+        Comparator<BuyItem> comparator = new Comparator<BuyItem>()
+        {
+            Collator collator = Collator.getInstance();
+            @Override
+            public int compare(BuyItem object1, BuyItem object2)
+            {
+                return collator.compare(object1.getItem(), object2.getItem());
+            }
+        };
+        Collections.sort(buyitemList, comparator);
+
+        /*
+        Comparator<BuyItem> comparator = new Comparator<BuyItem>()
+        {
+            Collator collator = Collator.getInstance();
+            @Override
+            public int compare(BuyItem object1, BuyItem object2)
+            {
+                return collator.compare(object1.getItem(), object2.getItem());
+            }
+        };
+        Collections.sort(buyitemList, comparator);
+         */
+
+
     }
 
 

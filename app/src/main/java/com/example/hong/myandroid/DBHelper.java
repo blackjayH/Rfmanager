@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM USER", null);
         while (cursor.moveToNext()) {
-            result = cursor.getString(1) + "\n";
+            result = cursor.getString(1);
         }
         return result;
     }
@@ -136,7 +136,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-
+    // 쇼핑리스트 아이템 로딩
+    public ArrayList<RfItem> getRfItem() {
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<RfItem> bps = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM RFITEMLIST", null);
+        while (cursor.moveToNext()) {
+            bps.add(new RfItem(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8)));
+        }
+        return bps;
+    }
     /*
 
 

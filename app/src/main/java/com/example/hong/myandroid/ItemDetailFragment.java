@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import static com.example.hong.myandroid.BuyItemListActivity.buyitemnameList;
+
 public class ItemDetailFragment extends Fragment {
     /**
      * The fragment argument representing the item ID that this fragment
@@ -45,6 +47,7 @@ public class ItemDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
 
         ((TextView) rootView.findViewById(R.id.item_detail)).setText(getResources().getStringArray(R.array.countries)[mItem]);
+        //((TextView) rootView.findViewById(R.id.item_detail)).setText(buyitemnameList);
         return rootView;
     }
 }
