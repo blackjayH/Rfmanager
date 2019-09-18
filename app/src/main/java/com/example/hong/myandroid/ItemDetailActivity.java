@@ -16,7 +16,7 @@ import android.view.MenuItem;
  * 
  * @author Tonic Artos
  */
-public class ItemDetailActivity extends AppCompatActivity {
+public class ItemDetailActivity extends AppCompatActivity  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -28,7 +28,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                 //
                 // http://developer.android.com/design/patterns/navigation.html#up-vs-back
                 //
-                NavUtils.navigateUpTo(this, new Intent(this, RfmanagerActivity.class));
+                NavUtils.navigateUpTo(this, new Intent(this, RfitemListActivity.class));
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -59,7 +60,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                     getIntent().getIntExtra(ItemDetailFragment.ARG_ITEM_ID, 0));
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction().add(R.id.item_detail_container, fragment).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.item_detail_container, fragment).commit();
         }
     }
 }

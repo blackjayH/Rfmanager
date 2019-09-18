@@ -1,12 +1,8 @@
 package com.example.hong.myandroid;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -19,7 +15,7 @@ public class BacodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(BacodeScannerActivity.class);
@@ -28,25 +24,12 @@ public class BacodeActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d("onActivityResult", "onActivityResult: .");
-
-        if (resultCode == -1) {
-            IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-            str += scanResult.getContents();
-            Intent tempIntent = new Intent();
-            tempIntent.putExtra("result", intent);
-            setResult(-1, tempIntent);
-            finish();
-        }
-        /*
-            IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-            str += scanResult.getContents();
-            Intent localIntent = new Intent();
-            localIntent.putExtra("result", intent);
-            setResult(-1, localIntent);
-            finish();
-         */
+        //Log.d("onActivityResult", "onActivityResult: .");
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        str += scanResult.getContents(); // 바코드 값 리턴 후 파싱
+        Intent tempIntent = new Intent();
+        tempIntent.putExtra("result", str);
+        setResult(1, tempIntent);
+        finish();
     }
-
-
 }

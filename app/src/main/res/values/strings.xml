@@ -2,4 +2,6 @@
     <string name="app_name">Myandroid</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_toggle_sticky">Sticky Headers</string>
+    <string name="rationale_title">Permission required</string>
+    <string name="rationale_message">we need permission for <b>audio</b> and find your <b>camera</b></string>
 </resources>

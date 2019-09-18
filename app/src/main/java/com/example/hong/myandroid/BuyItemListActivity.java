@@ -24,6 +24,8 @@ public class BuyItemListActivity extends Fragment {
     private BuyItemNotification buyItemNotification;
     public static ArrayList<BuyItem> buyitemList = new ArrayList<>();
     public static ArrayList<String> buyitemnameList = new ArrayList<>();
+    public static ArrayList<RfItem> rfitemList = new ArrayList<>();
+    public static ArrayList<String> rfitemnameList = new ArrayList<>();
     public static ArrayList<String> buyitemenrolldateList = new ArrayList<>();
     EditText inputbuyitem;
     Button enrollbuyitem, dropbuyitem, restorebuyitem;
@@ -187,6 +189,8 @@ public class BuyItemListActivity extends Fragment {
         buyitemnameList.clear();
         buyitemenrolldateList.clear();
         buyitemList = dbHelper.getBuyItem();
+        rfitemList = dbHelper.getRfItem();
+        rfitemnameList.clear();
         sort();
 
         for (int i = buyitemList.size() - 1; i >= 0; i--) {
@@ -202,21 +206,29 @@ public class BuyItemListActivity extends Fragment {
             buyitemenrolldateList.add(bp.getEnrolldate());
             adapter.add(bp);
         }
+        for (RfItem rf : rfitemList) {
+            rfitemnameList.add(rf.getItem());
+        }
+
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
     private void sort() {
-        Comparator<BuyItem> comparator = new Comparator<BuyItem>()
+        //Comparator<BuyItem> comparator = new Comparator<BuyItem>()
+        Comparator<RfItem> comparator = new Comparator<RfItem>()
         {
             Collator collator = Collator.getInstance();
             @Override
-            public int compare(BuyItem object1, BuyItem object2)
+            //public int compare(BuyItem object1, BuyItem object2)
+            public int compare(RfItem object1, RfItem object2)
+
             {
                 return collator.compare(object1.getItem(), object2.getItem());
             }
         };
-        Collections.sort(buyitemList, comparator);
+        //Collections.sort(buyitemList, comparator);
+        Collections.sort(rfitemList, comparator);
 
         /*
         Comparator<BuyItem> comparator = new Comparator<BuyItem>()

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import static com.example.hong.myandroid.BuyItemListActivity.buyitemnameList;
+
 
 public class ItemDetailFragment extends Fragment {
     /**
@@ -46,8 +46,9 @@ public class ItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
 
-        ((TextView) rootView.findViewById(R.id.item_detail)).setText(getResources().getStringArray(R.array.countries)[mItem]);
-        //((TextView) rootView.findViewById(R.id.item_detail)).setText(buyitemnameList);
+        // 세부 내용 추가
+        ((TextView) rootView.findViewById(R.id.item_detail)).setText("gg");
         return rootView;
+
     }
 }

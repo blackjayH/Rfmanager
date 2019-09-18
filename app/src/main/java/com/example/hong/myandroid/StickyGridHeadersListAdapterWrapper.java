@@ -73,6 +73,7 @@ public class StickyGridHeadersListAdapterWrapper extends BaseAdapter implements
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         return mDelegate.getView(position, convertView, parent);
     }
 

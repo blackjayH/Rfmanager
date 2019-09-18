@@ -5,7 +5,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".RfmanagerActivity"
+    tools:context=".RfitemListActivity"
     tools:ignore="NewApi" >
 
     <!--

@@ -4,7 +4,7 @@
     android:name="com.example.hong.myandroid.ItemListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RfmanagerActivity"
+    tools:context=".RfitemListActivity"
     tools:ignore="NewApi"
     tools:layout="@android:layout/list_content" />
 

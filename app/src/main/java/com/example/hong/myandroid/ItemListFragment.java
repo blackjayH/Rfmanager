@@ -20,9 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.hong.myandroid.BuyItemListActivity.buyitemList;
-import static com.example.hong.myandroid.BuyItemListActivity.buyitemenrolldateList;
-import static com.example.hong.myandroid.BuyItemListActivity.buyitemnameList;
+import static com.example.hong.myandroid.BuyItemListActivity.rfitemnameList;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports
@@ -162,7 +160,7 @@ public class ItemListFragment extends Fragment implements OnItemClickListener,
             case R.id.menu_use_sticky_adapter:
                 mGridView.setAdapter(new StickyGridHeadersSimpleArrayAdapter<String>(getActivity()
                         //.getApplicationContext(), getResources().getStringArray(R.array.countries),
-                        .getApplicationContext(), buyitemnameList,
+                        .getApplicationContext(), rfitemnameList,
                         R.layout.header, R.layout.item));
                 mMenu.findItem(R.id.menu_use_list_adapter).setVisible(true);
                 mMenu.findItem(R.id.menu_toggle_sticky).setVisible(true);
@@ -198,7 +196,7 @@ public class ItemListFragment extends Fragment implements OnItemClickListener,
         // mGridView.setColumnWidth((int) calculatePixelsFromDips(100));
         // mGridView.setNumColumns(StickyGridHeadersGridView.AUTO_FIT);
         mGridView.setAdapter(new StickyGridHeadersSimpleArrayAdapter<String>(getActivity().
-                        getApplicationContext(), buyitemnameList,
+                        getApplicationContext(), rfitemnameList,
                 //getResources().getStringArray(R.array.countries),
                 R.layout.header, R.layout.item));
 

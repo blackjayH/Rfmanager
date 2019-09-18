@@ -181,21 +181,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <Button
-            android:id="@+id/gotomain"
+            android:id="@+id/gotodel"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="메인" />
+            android:text="리셋" />
+
         <Button
             android:id="@+id/gotosave"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="저장" />
-        <Button
-            android:id="@+id/gotodel"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:text="삭제" />
+
     </LinearLayout>
     <TextView
         android:id="@+id/sqlresult"

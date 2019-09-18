@@ -21,7 +21,6 @@ public class BacodeScannerActivity extends Activity implements DecoratedBarcodeV
     private BackPressCloseHandler backPressCloseHandler;
     private ImageButton setting_btn, switchFlashlightButton;
     private Boolean switchFlashlightButtonCheck;
-    public TextView test123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
